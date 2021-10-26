@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -7,8 +8,6 @@ class InputTodo extends React.Component {
     this.state = {
       title: '',
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
   }
 
   onChange = (e) => {
@@ -43,7 +42,7 @@ class InputTodo extends React.Component {
           name="title"
           onChange={this.onChange}
         />
-        <button type="button">Submit</button>
+        <button>Submit</button>
       </form>
     );
   }
