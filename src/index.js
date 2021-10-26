@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import ReactDOM from 'react-dom';
 import TodoContainer from './components/TodoContainer.js';
 
