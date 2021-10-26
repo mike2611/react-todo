@@ -1,16 +1,19 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-class TodoItem extends React.Component {
+class TodoItem extends React.PureComponent {
   render() {
+    const { todo, handleChangeProps, deleteTodoProps } = this.props;
     return (
-    <li>
-      <input type="checkbox"
-      checked={this.props.todo.completed}
-      onChange={() => this.props.handleChangeProps(this.props.todo.id)}
-      />
-      <button onClick={() => this.props.deleteTodoProps(this.props.todo.id)}>Delete</button>
-      {this.props.todo.title}
-    </li>
+      <li>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => handleChangeProps(todo.id)}
+        />
+        <button type="button" onClick={() => deleteTodoProps(todo.id)}>Delete</button>
+        {todo.title}
+      </li>
     );
   }
 }

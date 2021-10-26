@@ -1,9 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 class InputTodo extends React.Component {
-  state = {
-    title: '',
-  };
+  constructor() {
+    super();
+    this.state = {
+      title: '',
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
 
   onChange = (e) => {
     this.setState({
@@ -13,8 +19,10 @@ class InputTodo extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title);
+    const { title } = this.state;
+    const { addTodoProps } = this.props;
+    if (title.trim()) {
+      addTodoProps(title);
       this.setState({
         title: '',
       });
@@ -25,16 +33,20 @@ class InputTodo extends React.Component {
   };
 
   render() {
+    const { title } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text"
-        placeholder="Add Todo..."
-        value={this.state.title}
-        name="title"
-        onChange={this.onChange}/>
-        <button>Submit</button>
+        <input
+          type="text"
+          placeholder="Add Todo..."
+          value={title}
+          name="title"
+          onChange={this.onChange}
+        />
+        <button type="button">Submit</button>
       </form>
     );
   }
 }
+
 export default InputTodo;
