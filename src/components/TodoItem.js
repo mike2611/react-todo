@@ -11,9 +11,15 @@ class TodoItem extends React.Component {
   }
 
   handleEditing = () => {
-    this.setState((prevState) => ({
-      editing: !prevState.editing,
+    this.setState(() => ({
+      editing: true,
     }));
+  }
+
+  handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      this.setState({ editing: false });
+    }
   }
 
   render() {
@@ -23,7 +29,12 @@ class TodoItem extends React.Component {
       opacity: 0.4,
       textDecoration: 'line-through',
     };
-    const { todo, handleChangeProps, deleteTodoProps } = this.props;
+    const {
+      todo,
+      handleChangeProps,
+      deleteTodoProps,
+      setUpdate,
+    } = this.props;
     const { completed, id, title } = todo;
     const { editing } = this.state;
     const viewMode = {};
@@ -53,8 +64,9 @@ class TodoItem extends React.Component {
           className={styles.textInput}
           value={title}
           onChange={(e) => {
-            console.log(e.target.value, id);
+            setUpdate(e.target.value, id);
           }}
+          onKeyDown={this.handleUpdatedDone}
         />
       </li>
     );
